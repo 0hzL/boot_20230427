@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>게시글목록</title>
+</head>
+<body>
+    <h3>게시글목록(Board1)</h3>
+    <a th:href="@{/board1/insert.do}">글쓰기</a>
+
+    <form th:action="@{/board1/selectlist.do}" method="get">
+        <input type="text" name="text" placeholder="검색어" />
+        <input type="hidden" name="page" value="1" />
+        <input type="submit" value="검색" />
+    </form>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>조회수</th>
+                <th>날짜</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="obj : ${list}">
+                <td th:text="${obj.no}"></td>
+                <td><a th:href="@{/board1/selectone.do(no=${obj.no})}" th:text="${obj.title}"></a></td>
+                <td th:text="${obj.writer}"></td>
+                <td th:text="${obj.hit}"></td>
+                <td th:text="${obj.regdate}"></td>
+                <td><a th:href="@{/boardimage1/selectlist.do(no=${obj.no})}"><button>이미지추가</button></a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+</body>
+</html>

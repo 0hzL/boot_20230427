@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+    <h3>홈화면</h3>
+<hr/>
+<div th:if="${user == null}">
+    <a th:href="@{/customer/join.do}">고객회원가입</a>
+    <a th:href="@{/login.do}">고객로그인</a>
+</div>
+
+
+<div th:if="${user != null}">
+    <p th:text="${user.username}"></p>
+    <p th:text="${user.authorities[0]}"></p>
+    <a th:href="@{/customer/home.do}">고객 홈페이지</a>
+    <form th:action="@{/logout.do}" method="post">
+        <input type="submit" value="로그아웃">
+    </form>
+</div>
+
+<hr/>
+
+<div th:if="${user == null}">
+<a th:href="@{/seller/join.do}">판매자회원가입</a>
+<a th:href="@{/login.do}">판매자로그인</a>
+</div>
+
+<div th:if="${user != null}">
+    <p th:text="${user.username}"></p>
+    <p th:text="${user.authorities[0]}"></p>
+    <a th:href="@{/seller/home.do}">판매자홈(ADMIN, SELLER)</a>
+    <form th:action="@{/logout.do}" method="post">
+        <input type="submit" value="로그아웃">
+    </form>
+</div>
+<hr/>
+
+<div th:if="${user == null}">
+<a th:href="@{/admin/join.do}">관리자회원가입</a>
+<a th:href="@{/login.do}">관리자로그인</a>
+</div>
+
+
+
+<div th:if="${user != null}">
+    <p th:text="${user.username}"></p>
+    <p th:text="${user.authorities[0]}"></p>
+    <a th:href="@{/admin/home.do}">관리자홈(ADMIN)</a>
+    <form th:action="@{/logout.do}" method="post">
+        <input type="submit" value="로그아웃">
+    </form>
+</div>
+<hr/>
+
+
+
+</body>
+</html>
