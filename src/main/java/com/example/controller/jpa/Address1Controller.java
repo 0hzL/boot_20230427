@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.controller.jpa;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.entity.Address1;
+import com.example.entity.Address1Projection;
 import com.example.entity.Member1;
 import com.example.repository.Address1Repository;
 import com.example.repository.Member1Repository;
@@ -93,6 +94,21 @@ public class Address1Controller {
            e.printStackTrace();
            //redirect: 주소창의 주소 바꿈
            return "redirect:/home.do";
+        }
+    }
+
+    //127.0.0.1:9090/ROOT/address1/selectlistprojection.do
+    @GetMapping(value = "/selectlistprojection.do")
+    public String selectlistprojectGET(Model model){
+        try {
+            //제너릭이여서 가능함
+            //List<Address1> list = a1Repository.findAllByOrderByNoDesc(Address1.class);
+            List<Address1Projection> list = a1Repository.findAllByOrderByNoDesc(Address1Projection.class);
+            model.addAttribute("list", list);
+            return "/address1/selectlistprojection";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/home.do";
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.controller.jpa;
 
 import java.util.List;
 
@@ -38,6 +38,7 @@ public class Board1Controller {
         return "redirect:/board1/selectlist.do";
     }
 
+
     //글번호 기준으로 내림차순 전체 게시글 조회
     @GetMapping(value = "/selectlist.do")
     public String selectlistGET(Model model){
@@ -47,6 +48,7 @@ public class Board1Controller {
         return "/board1/selectlist";
     }
 
+    
     @GetMapping(value = "/selectone.do")
     public String selectoneGET(Model model,@RequestParam(name = "no") long no){
         Board1 board1 = b1Repository.findById(no).orElse(null);

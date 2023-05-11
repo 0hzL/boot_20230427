@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.controller.jpa;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.entity.Member1;
+import com.example.entity.Member1Projection;
 import com.example.repository.Member1Repository;
 
 import lombok.RequiredArgsConstructor;
@@ -97,6 +98,23 @@ public class Member1Controller {
 
             m1Repository.save(member2);
             return "redirect:/member1/selectlist.do";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/home.do";
+        }
+    }
+
+    //127.0.0.1:9090/ROOT/
+    @GetMapping(value = "/selectlistprojection.do")
+    public String selectListProjectionGET(Model model){
+        try {
+            List<Member1Projection> list = m1Repository.findAllByOrderByIdAsc();
+            //반복문
+            for(Member1Projection obj : list){
+                log.info(format,obj.getId() +","+ obj.getName()+","+obj.getAge());
+            }
+            model.addAttribute("list", list);
+            return"member1/selectlistprojection";
         } catch (Exception e) {
             e.printStackTrace();
             return "redirect:/home.do";

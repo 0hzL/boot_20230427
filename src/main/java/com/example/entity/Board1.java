@@ -47,7 +47,7 @@ public class Board1 {
     private long hit=1;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    @CreationTimestamp
+    @CreationTimestamp 
     private Date regdate;
 
     //계속 도는걸 멈추게 해줌

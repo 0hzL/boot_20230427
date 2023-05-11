@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    
+<body>
+    <h3>Member1Projection</h3>
+    <hr/>
+        <table>
+            <tbody>
+                <tr th:each="obj : ${list}">
+                    <td th:text="${obj.id}"></td>
+                    <td th:text="${obj.name}"></td>
+                    <td th:text="${obj.age}"></td>
+                </tr>
+            </tbody>
+        </table>
+</body>
+</html>

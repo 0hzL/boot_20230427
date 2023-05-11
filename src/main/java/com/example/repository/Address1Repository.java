@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.example.entity.Address1;
+import com.example.entity.Address1Projection;
 
 // 저장소 생성 : JpaRepository에는 기본적인 crud 구현되어 있음
 // JpaRepository<엔티티, 기본키의 데이터 타입>
@@ -30,4 +31,11 @@ public interface Address1Repository extends JpaRepository<Address1, Long> {
 
     //WHERE member1.id=? ORDER BY no DESC + 페이지네이션 기능 포함
     List<Address1> findByMember1_idOrderByNoDesc(String id, Pageable pageable); //domain pageable 
+
+    //SELECT a.no, a.address, m.id, m.name FROM address1 a, member1 m ORDER BY DESC;
+    // List<Address1Projection> findAllByOrderByNoDesc();
+
+    //제너릭을 이용한 타입 설정
+    //필요한 타입을 넣을 수 있음
+    <T> List<T> findAllByOrderByNoDesc(Class<T> type);
 }
