@@ -14,8 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.entity.Member1;
 import com.example.entity.Member1Projection;
+import com.example.entity.MemberInfo1;
 import com.example.repository.Member1Repository;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,8 +26,43 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 public class Member1Controller {
+
+
     final String format = "Member1Controller => {}";
     final Member1Repository m1Repository; // 저장소 객체
+
+    //one to one(memberinfo 넣기)
+    @GetMapping(value = "/join1.do")
+    public String join1GET(){
+        try {
+            
+            return "/member1/join1";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/home.do";
+        }
+    }
+
+    @PostMapping(value = "/join1.do")
+    public String join1POST(@ModelAttribute Member1 member1,
+                            @ModelAttribute MemberInfo1 memberInfo1) {
+        try {
+
+            //Member1(id=aa,pw=a,name=aa,age=1,regdate=null,memberInfo=)
+            log.info("{}", member1);
+            member1.setMemberInfo1(memberInfo1);
+
+             //MemberInfo1(id1=null,member1=null, info=정보, regdate=null)
+            log.info("{}", memberInfo1);
+            memberInfo1.setMember1(member1);
+
+            m1Repository.save(member1);
+            return "redirect:/member1/join1.do";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/home.do";
+        }
+    }
 
     @GetMapping(value = "/join.do")
     public String joinGET() {

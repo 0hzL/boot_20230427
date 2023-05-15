@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도서관 list</title>
+</head>
+<body>
+    <h3> 도서관 목록 </h3>
+    <!-- for( Library2 obj : list) {  } -->
+    <table border="1">
+        <tr>
+            <td>도서관 코드</td>
+            <td>도서관 이름</td>
+            <td>도서관 주소</td>
+            <td>도서관 전화번호</td>
+            <td>등록일자</td>
+        </tr>
+        <tr th:each="obj : ${list}">
+            <td th:text="${obj.code}"></td>
+            <td th:text="${obj.name}"></td>
+            <td th:text="${obj.address}"></td>
+            <td th:text="${obj.phone}"></td>
+            <td th:text="${obj.regdate}"></td>
+        </tr>
+
+    </table>
+</body>
+</html>

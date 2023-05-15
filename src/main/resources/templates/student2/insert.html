@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학생 등록</title>
+</head>
+<body>
+    <h3>학생 등록(student2)</h3>
+    <form th:action="@{/student2/insert.do}" method="post">
+        <input type="text" name="email" id="email" /> <br/>
+        <input type="text" name="name" id="name" value="김학생" /> <br/>
+        <input type="text" name="password" id="password" placeholder="비밀번호를 입력하세요"/> <br/>
+        <input type="number" name="age" id="age" value="21"/> <br/>
+        <input type="text" name="phone" id="phone" value="010-1111-1111"/> <br/>
+        <input type="submit" value="학생 등록" />
+    </form>
+</body>
+</html>
